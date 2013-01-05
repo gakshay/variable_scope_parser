@@ -11,10 +11,6 @@ module Hoppr
     # Initializes a stack of +empty+ array
     # The value of +top+ for an empty stack is +0+
     def initialize
-      set
-    end
-  
-    def set
       @list, @top = [], nil
     end
   
@@ -53,7 +49,7 @@ module Hoppr
   
     # Resets the stack
     def reset
-      set
+      @list, @top = [], nil
     end
     alias_method :reset!, :reset
 
