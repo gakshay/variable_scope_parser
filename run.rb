@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/lib/hoppr.rb'
 
 # File Read
 parser = Hoppr::Parser.new
-parser.file("input_01.txt")
+parser.file("sample/input_01.txt")
 
 
 # Manual input 
