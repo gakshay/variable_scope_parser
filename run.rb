@@ -3,12 +3,8 @@
 
 require File.dirname(__FILE__) + '/lib/hoppr.rb'
 
+# send file path as argument
 
-# File Read
 parser = Hoppr::Parser.new
-puts parser.file("sample/input_01.txt")
-
-
-# Manual input 
-parser = Hoppr::Parser.new
-puts parser.input
+result = ARGV[0] ? parser.file(ARGV[0]) : parser.input
+puts result

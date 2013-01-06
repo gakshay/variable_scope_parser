@@ -16,7 +16,7 @@ module Hoppr
       @result = []
     end
     
-    # STDIN format for interpreted parsing
+    # takes user input from STDIN
     def input
       start
       while @stack.length != 0
