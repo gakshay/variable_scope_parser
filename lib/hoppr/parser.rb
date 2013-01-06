@@ -19,7 +19,7 @@ module Hoppr
     # STDIN format for interpreted parsing
     def input
       start
-      while @stack.top >= 0
+      while @stack.length != 0
         parse_line gets.chomp
       end
       @sequence.clear

@@ -4,6 +4,7 @@
 module Hoppr
   
   # Stack stores the updated latest value on top of the stack
+  # Top of the stack inherits the variable values from the last stack
   # Provides standard function like push, pop, find, update, reset, size, first, last, each
   class Stack
     attr_accessor :top, :list
@@ -21,7 +22,7 @@ module Hoppr
   
     # update the value for the key on top of the stack
     def update(key, value)
-      @list[@top][key.to_sym] = value.is_a?(Integer) ? value : find(value)
+      @list[@top][key.to_sym] = value.is_a?(Integer) ? value : find(value) unless empty?
     end
   
     # Increments top and inserts the duplicate values on top of the stack
@@ -39,12 +40,12 @@ module Hoppr
     def pop
       @list.delete_at(@top)
       @top -= 1
-      #empty? ? reset : (@top -= 1 )
+      reset if empty?
     end
   
     # Returns +true+ if the stack is empty
     def empty?
-      @top.nil? || @top <= 0
+      @top.nil? || @top < 0
     end
   
     # Resets the stack
@@ -56,7 +57,8 @@ module Hoppr
     def size
       @list.size
     end
-
+    alias_method :length, :size
+    
     def first
       @list.first
     end
@@ -71,5 +73,5 @@ module Hoppr
       end
     end
     
-  end
-end
+  end # class Stack
+end # module Hoppr
