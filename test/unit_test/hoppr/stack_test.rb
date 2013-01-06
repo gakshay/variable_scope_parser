@@ -21,11 +21,11 @@ class Hoppr::StackTest < Test::Unit::TestCase
   def test_stack_push
     @stack.reset!
     @stack.push
-    assert_equal(@stack.top, 0)
-    assert_equal(@stack.length, 1)
+    top 0
+    length 1
     @stack.push
-    assert_equal(@stack.top, 1)
-    assert_equal(@stack.length, 2)
+    top 1
+    length 2
     @stack.reset!
   end
   
@@ -34,14 +34,14 @@ class Hoppr::StackTest < Test::Unit::TestCase
     @stack.push
     @stack.push
     @stack.push
-    assert_equal(@stack.top, 2)
-    assert_equal(@stack.length, 3)
+    top 2
+    length 3
     @stack.pop
-    assert_equal(@stack.top, 1)
-    assert_equal(@stack.length, 2)
+    top 1
+    length 2
     @stack.pop
-    assert_equal(@stack.top, 0)
-    assert_equal(@stack.length, 1)
+    top 0
+    length 1
     @stack.pop
     empty_stack_assertions
     @stack.reset!
@@ -52,22 +52,22 @@ class Hoppr::StackTest < Test::Unit::TestCase
     @stack.push
     @stack.update('a', 10)
     @stack.update('b', 20)
-    assert_equal(@stack.find('a'), 10)
-    assert_equal(@stack.find('b'), 20)
+    search('a',10)
+    search('b',20)
     @stack.push
     @stack.update('a', 50)
-    assert_equal(@stack.find('a'), 50)
+    search('a',50)
     assert_not_equal(@stack.find('a'), 10)
-    assert_equal(@stack.find('b'), 20)
+    search('b',20)
     @stack.push
     @stack.update('b','a')
     @stack.update('a', 15)
-    assert_equal(@stack.find('a'), 15)
-    assert_equal(@stack.find('b'), 50)
+    search('a',15)
+    search('b',50)
     assert_not_equal(@stack.find('b'), 20)
     assert_not_equal(@stack.find('a'), 50)
     @stack.pop
-    assert_equal(@stack.find('b'), 20)
+    search('b',20)
     assert_not_equal(@stack.find('a'), 10)
     @stack.pop
     @stack.reset!
@@ -82,8 +82,20 @@ class Hoppr::StackTest < Test::Unit::TestCase
   
   def empty_stack_assertions
     assert_equal(@stack.empty?, true)
-    assert_equal(@stack.top, nil)
-    assert_equal(@stack.length, 0)
+    top nil
+    length 0
   end
   
+  def length(len)
+    assert_equal(@stack.length, len)
+  end
+  
+  def top(top)
+    assert_equal(@stack.top, top)
+  end
+  
+  def search(literal, value)
+    assert_equal(@stack.find(literal), value)
+  end
+
 end

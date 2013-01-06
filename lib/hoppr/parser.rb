@@ -25,6 +25,7 @@ module Hoppr
       @sequence.clear
       output
     end
+    alias_method :run, :input
     
     def start
       puts "Enter the Parsing Sequence"
@@ -83,7 +84,7 @@ module Hoppr
     end
     
     def output
-      puts @result.join("\n")
+      @result.join("\n")
     end
     
     private 
@@ -95,7 +96,7 @@ module Hoppr
     end
     
     def brackets_symmetry
-      raise Hoppr::BracketError unless count_opening_brackets == count_closing_brackets
+      raise Hoppr::BracketError, "Brackets [  ] don't match" unless count_opening_brackets == count_closing_brackets
     end
     
     def start_end_symmetry

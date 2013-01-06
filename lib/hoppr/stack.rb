@@ -35,6 +35,7 @@ module Hoppr
         @list[@top] = @list[@top - 1].dup
       end
     end
+    alias_method :add!, :push
   
     # Deletes the values on top of the stack and decreases top
     def pop
@@ -42,6 +43,7 @@ module Hoppr
       @top -= 1
       reset if empty?
     end
+    alias_method :delete!, :pop
   
     # Returns +true+ if the stack is empty
     def empty?
